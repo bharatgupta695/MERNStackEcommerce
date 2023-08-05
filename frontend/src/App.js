@@ -5,8 +5,9 @@ import webfont from "webfontloader";
 import React from 'react';
 import Footer from './component/layout/Footer/Footer.js';
 import Home from './component/Home/Home.js';
-import ProductDetails from './component/ProductDetails/ProductDetails.js';
- 
+import ProductDetails from './component/Product/ProductDetails.js';
+import Product from './component/Product/Product.js';
+import Search from './component/Product/Search.js';
 function App() {  
 React.useEffect(() => {
   webfont.load({
@@ -21,6 +22,9 @@ React.useEffect(() => {
       <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path='/product/:id' element={<ProductDetails/>}/>
+      <Route path='/products' element = {<Product/>}  />
+      <Route path='/search' element = {<Search/>}  />
+      <Route path="/products/:keyword" element = {<Product/>}  />
       </Routes>
      <Footer/>
      </Router>

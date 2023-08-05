@@ -19,18 +19,26 @@ exports.createProduct = catchAsyncErrors(async(req,res,next) => {
 });
   //Get All Products
 exports.getAllProducts = catchAsyncErrors(async (req,res,next) =>{
-   const resultsPerPage = 8;
-   const productCount = await Product.countDocuments();
+   const resultPerPage = 8;
+   const productsCount = await Product.countDocuments();
   const apiFeature = new ApiFeatures(Product.find(),req.query)
   .search().
-  filter().pagination(resultsPerPage);
- 
-   const products = await apiFeature.query;
+  filter().pagination(resultPerPage); 
 
+  let products = await apiFeature.query;
+  
+  let filteredProductsCount = products.length;
+
+   // apiFeature.pagination(resultPerPage);
+   // console.log(apiFeature.query, "here");
+   //   products = await apiFeature.query;
+   //   console.log(products, "here");
    res.status(200).json({
       success:true,
       products,
-      productCount
+      productsCount,
+      resultPerPage,
+      filteredProductsCount
    }); 
 
 });
