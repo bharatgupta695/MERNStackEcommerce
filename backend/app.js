@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./middleware/error");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const app =express();
 
 app.use(cors());
@@ -10,6 +11,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileUpload());
 
 // route imports
 const product = require("./routes/productRoute");
